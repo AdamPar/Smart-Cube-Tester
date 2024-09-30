@@ -28,12 +28,12 @@ String last_command = "";
 // ====== FUNCTIONS ======
 
 void displayOLED(){
-  //display.clearDisplay();
+  display.clearDisplay();
   display.setTextSize(2);
   display.setTextColor(SH110X_WHITE);
   display.setCursor(10, 10);
   display.println("Command:");
-  display.setCursor(10, 30);
+  display.setCursor(1, 30);
   if(last_command != ""){
     display.println(last_command);
   } else {
@@ -53,7 +53,7 @@ void handleOnNotFound(){
 void handleCommand() {
   if (server.hasArg("plain")) {
     String input_json = server.arg("plain");
-    Serial.println("Received JSON: " + input_json);
+    //Serial.println("Received JSON: " + input_json);
 
     JsonDocument doc;
     DeserializationError error = deserializeJson(doc, input_json);
@@ -92,6 +92,8 @@ void setup()   {
   delay(250);
   display.clearDisplay();
 
+  displayOLED();
+
   server.on("/", handleHomePage);
   server.on("/command", HTTP_POST, handleCommand); 
   server.onNotFound(handleOnNotFound);
@@ -102,9 +104,6 @@ void setup()   {
 // ======== LOOP ========
 void loop() {
   server.handleClient();
-
-  //displayOLED();
-  delay(1000);
-  
+  delay(100);
 }
 
