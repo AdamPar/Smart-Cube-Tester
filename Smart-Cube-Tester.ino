@@ -21,7 +21,7 @@ Adafruit_SH1106G display = Adafruit_SH1106G(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, 
 ESP8266WebServer server(80);
 
 // ===== VARIABLES ======
-const char *ssid_ap = "Smart-Cube-Tester";
+const char *ssid_ap = "Smart-Screen";
 //const char* password_ap = "secret";
 String last_command = "";
 
